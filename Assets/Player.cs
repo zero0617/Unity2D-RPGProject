@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     private StateMachine stateMachine;  
 
-    private PlayerInputSet input;
+    public PlayerInputSet input { get; private set; }
 
     public Vector2 moveInput { get; private set; }
     public Animator anim { get; private set; }
@@ -14,10 +14,14 @@ public class Player : MonoBehaviour
 
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
+    public Player_JumpState jumpState { get; private set; }
+    public Player_FallState fallState { get; private set; }
+
 
     [Header("Movement details")]
     public float moveSpeed;
     public bool facingRight = true;
+    public float jumpForce = 5;
 
 
     private void Awake()
@@ -36,6 +40,12 @@ public class Player : MonoBehaviour
 
         //创建一个移动状态实例对象
         moveState = new Player_MoveState(this, stateMachine, "move");
+
+        //创建一个跳跃状态实例对象
+        jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
+
+        //创建一个下落状态实例对象
+        fallState = new Player_FallState(this, stateMachine, "jumpFall");
     }
 
     private void OnEnable()
@@ -71,8 +81,8 @@ public class Player : MonoBehaviour
     }
 
 
-    //
 
+    // 人物翻转
     public void handleFild(float xVelocity)
     {
         if (xVelocity > 0 && facingRight == false)
@@ -81,7 +91,6 @@ public class Player : MonoBehaviour
             Fild();
     }
 
-    // 人物翻转
     public void Fild()
     {
         transform.Rotate(0, 180, 0);

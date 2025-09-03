@@ -18,6 +18,8 @@ public abstract class EntityState
 
     protected Rigidbody2D rb;
 
+    protected PlayerInputSet input;
+
 
     // 定义类的构造函数，它接受一个 StateMachine 类型的参数 stateMachine。
     public EntityState(Player player, StateMachine stateMachine, string animaBoolName)
@@ -31,6 +33,7 @@ public abstract class EntityState
 
         anim = player.anim;
         rb = player.rb;
+        input = player.input;
     }
 
     // 当前状态方法
@@ -42,7 +45,7 @@ public abstract class EntityState
     // 更新
     public virtual void Update()
     {
-        Debug.Log("I Update " + animaBoolName);
+        anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
 
