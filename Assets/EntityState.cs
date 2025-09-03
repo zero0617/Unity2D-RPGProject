@@ -16,6 +16,8 @@ public abstract class EntityState
 
     protected Animator anim;
 
+    protected Rigidbody2D rb;
+
 
     // 定义类的构造函数，它接受一个 StateMachine 类型的参数 stateMachine。
     public EntityState(Player player, StateMachine stateMachine, string animaBoolName)
@@ -26,7 +28,9 @@ public abstract class EntityState
         this.StateMachine = stateMachine;
         this.animaBoolName = animaBoolName;
 
+
         anim = player.anim;
+        rb = player.rb;
     }
 
     // 当前状态方法

@@ -15,5 +15,15 @@ public class Player_MoveState : EntityState
 
         if (player.moveInput.x == 0)
             StateMachine.ChangeState(player.idleState);
+
+        //人物转向
+        /*
+        else if (player.moveInput.x > 0 && player.facingRight != true)
+            player.Fild();
+        else if (player.moveInput.x < 0 && player.facingRight)
+            player.Fild();
+        */
+
+        player.SetVelocity(player.moveInput.x * player.moveSpeed, rb.velocity.y);
     }
 }
