@@ -19,10 +19,18 @@ public class Player : MonoBehaviour
 
 
     [Header("Movement details")]
-    public float moveSpeed;
-    public bool facingRight = true;
-    public float jumpForce = 5;
+    public float moveSpeed; //移动速度
+    public bool facingRight = true; //是否朝右
+    public float jumpForce = 5; //跳跃高度
 
+    [Range(0,1)]
+    public float inAirMoveMultipLier = .7f; //空中跳跃阻力
+
+    [Header("Collision detection")]
+    [SerializeField] private float groundCheckDistance; //到地面的距离
+    [SerializeField] private LayerMask whatIsGround;    //是否为地面
+
+    public bool groundDetected { get; private set; } //是否在地面
 
     private void Awake()
     {
@@ -70,6 +78,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        HandleCollisionDetection();
         stateMachine.UpdataActionState();
     }
 
@@ -83,7 +92,7 @@ public class Player : MonoBehaviour
 
 
     // 人物翻转
-    public void handleFild(float xVelocity)
+    private void handleFild(float xVelocity)
     {
         if (xVelocity > 0 && facingRight == false)
             Fild();
@@ -91,10 +100,22 @@ public class Player : MonoBehaviour
             Fild();
     }
 
-    public void Fild()
+    private void Fild()
     {
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
     }
-    
+
+    //检测人物是否在地面
+    public void HandleCollisionDetection()
+    {
+        groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance  ,whatIsGround);
+    }
+
+    //人物射线
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+    }
+
 }
