@@ -14,7 +14,7 @@ public class Player_GroundeState : EntityState
 
 
         //人物y轴速度小于0，进入下落状态
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && player.groundDetected == false)
             StateMachine.ChangeState(player.fallState);
 
         //有跳跃输入，进入跳跃状态

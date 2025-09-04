@@ -13,8 +13,12 @@ public class Player_FallState : Player_AiredState
     {
         base.Update();
 
-        //如果人物在地面，进入空闲状态
+        //如果人物在地面，由下落状态进入空闲状态
         if (player.groundDetected)
             StateMachine.ChangeState(player.idleState);
+
+        //如果人物碰到墙壁，由下落状态进入滑墙状态
+        if (player.wallDetected)
+            StateMachine.ChangeState(player.wallSlideState);
     }
 }
