@@ -20,6 +20,8 @@ public abstract class EntityState
 
     protected PlayerInputSet input;
 
+    protected float stateTimer;
+
 
     // 定义类的构造函数，它接受一个 StateMachine 类型的参数 stateMachine。
     public EntityState(Player player, StateMachine stateMachine, string animaBoolName)
@@ -45,7 +47,13 @@ public abstract class EntityState
     // 更新
     public virtual void Update()
     {
+        //计时器
+        stateTimer -= Time.deltaTime;
+
         anim.SetFloat("yVelocity", rb.velocity.y);
+
+        if (input.Player.Dash.WasPressedThisFrame() && canDash())
+            StateMachine.ChangeState(player.dashState);
     }
 
 
@@ -53,5 +61,20 @@ public abstract class EntityState
     public virtual void Exit()
     {
         anim.SetBool(animaBoolName, false);
+    }
+
+    //是否能冲刺
+    private bool canDash()
+    {
+        //爬墙不能冲刺
+        if (player.wallDetected)
+            return false;
+
+        //不能连续冲刺
+        if (StateMachine.currentState == player.dashState)
+            return false;
+
+
+        return true;
     }
 }

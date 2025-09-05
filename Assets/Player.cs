@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public Player_FallState fallState { get; private set; }
     public Player_WallSlideState wallSlideState { get; private set; }
     public Player_WallJumpState wallJumpState { get; private set; }
+    public Player_DashState dashState { get; private set; }
 
 
     [Header("Movement details")]
@@ -27,11 +28,16 @@ public class Player : MonoBehaviour
     public float jumpForce = 5; //跳跃高度
     public Vector2 wallJumpForce; //滑墙时跳跃的方向
 
+
     [Range(0, 1)]
     public float wallSlideSlowMultipLier = .7f; //下滑阻力
 
     [Range(0,1)]
     public float inAirMoveMultipLier = .7f; //空中跳跃阻力
+
+    [Space]
+    public float dashDuration = .25f; //冲刺持续时间
+    public float dashSpeed = 20; //冲刺速度
 
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance; //到地面的距离
@@ -69,6 +75,9 @@ public class Player : MonoBehaviour
 
         //创建一个滑墙跳跃状态实例对象
         wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
+
+        //创建一个冲刺状态实例对象
+        dashState = new Player_DashState(this, stateMachine, "dash");
     }
 
     private void OnEnable()

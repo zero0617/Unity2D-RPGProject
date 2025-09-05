@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 440242132}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.902, y: -3.783, z: 0}
+  m_LocalPosition: {x: 0.92, y: -0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -282,6 +282,8 @@ MonoBehaviour:
   wallJumpForce: {x: 0, y: 0}
   wallSlideSlowMultipLier: 0.4
   inAirMoveMultipLier: 0.9
+  dashDuration: 0.25
+  dashSpeed: 20
   groundCheckDistance: 1.4
   wallCheckDistance: 0.37
   whatIsGround:
@@ -695,7 +697,7 @@ Transform:
   m_GameObject: {fileID: 683048992}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4972, y: 0, z: 0}
+  m_LocalPosition: {x: -9.03, y: -3.59, z: 0}
   m_LocalScale: {x: 5.2091374, y: 6.3418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -728,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 1176775226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.04, y: 0, z: 0}
+  m_LocalPosition: {x: 0.94, y: 0, z: 0}
   m_LocalScale: {x: 5.2091374, y: 6.3418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
