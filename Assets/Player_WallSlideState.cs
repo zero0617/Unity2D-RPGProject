@@ -13,9 +13,11 @@ public class Player_WallSlideState : EntityState
         base.Update();
         HandleWallSlide();
 
+        //如果人物没有触碰墙壁，从滑墙状态进入下落状态
         if (player.wallDetected == false)
             StateMachine.ChangeState(player.fallState);
 
+        //人物滑墙触底，转向进入空闲状态
         if (player.groundDetected)
         {
             player.Fild();
@@ -23,8 +25,9 @@ public class Player_WallSlideState : EntityState
             StateMachine.ChangeState(player.idleState);
         }
 
+        //滑墙时有跳跃输入，进入滑墙跳跃状态
         if (input.Player.Jump.WasPressedThisFrame())
-            StateMachine.ChangeState(player.jumpState);
+            StateMachine.ChangeState(player.wallJumpState);
     }
 
 

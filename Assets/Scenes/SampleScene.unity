@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 440242132}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.28, y: -3.9, z: 0}
+  m_LocalPosition: {x: 8.902, y: -3.783, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -279,6 +279,7 @@ MonoBehaviour:
   moveSpeed: 8
   facingRight: 1
   jumpForce: 15
+  wallJumpForce: {x: 0, y: 0}
   wallSlideSlowMultipLier: 0.4
   inAirMoveMultipLier: 0.9
   groundCheckDistance: 1.4
@@ -345,8 +346,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022327662, y: -0.30895865}
-  m_Size: {x: 0.76160383, y: 2.0963037}
+  m_Offset: {x: -0.029254436, y: -0.30895865}
+  m_Size: {x: 0.7477503, y: 2.0963037}
   m_Direction: 0
 --- !u!1 &454623298
 GameObject:
@@ -727,7 +728,7 @@ Transform:
   m_GameObject: {fileID: 1176775226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.44, y: 0, z: 0}
+  m_LocalPosition: {x: -6.04, y: 0, z: 0}
   m_LocalScale: {x: 5.2091374, y: 6.3418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

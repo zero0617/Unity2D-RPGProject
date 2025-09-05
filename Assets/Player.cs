@@ -17,13 +17,15 @@ public class Player : MonoBehaviour
     public Player_JumpState jumpState { get; private set; }
     public Player_FallState fallState { get; private set; }
     public Player_WallSlideState wallSlideState { get; private set; }
+    public Player_WallJumpState wallJumpState { get; private set; }
 
 
     [Header("Movement details")]
     public float moveSpeed; //移动速度
     public bool facingRight = true; //是否朝右
-    private int facingDir = 1; 
+    public int facingDir { get; private set; } = 1; //水平射线方向（1 ：右）
     public float jumpForce = 5; //跳跃高度
+    public Vector2 wallJumpForce; //滑墙时跳跃的方向
 
     [Range(0, 1)]
     public float wallSlideSlowMultipLier = .7f; //下滑阻力
@@ -64,6 +66,9 @@ public class Player : MonoBehaviour
 
         //创建一个滑墙状态实例对象
         wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
+
+        //创建一个滑墙跳跃状态实例对象
+        wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
     }
 
     private void OnEnable()
