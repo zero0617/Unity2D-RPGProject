@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
     public Player_WallSlideState wallSlideState { get; private set; }
     public Player_WallJumpState wallJumpState { get; private set; }
     public Player_DashState dashState { get; private set; }
+    public Player_BasicAttackState basicAttackState { get; private set; }
+
+    [Header("Attack details")]
+    public Vector2 attackVelocity;
+    public float attackVelocityDuration = .1f;
 
 
     [Header("Movement details")]
@@ -78,6 +83,9 @@ public class Player : MonoBehaviour
 
         //创建一个冲刺状态实例对象
         dashState = new Player_DashState(this, stateMachine, "dash");
+
+        //创建一个基础攻击状态对象
+        basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
     }
 
     private void OnEnable()
@@ -113,7 +121,11 @@ public class Player : MonoBehaviour
         handleFild(xVelocity);
     }
 
-
+    //动画触发器
+    public void CallAnimationTrigger()
+    {
+        stateMachine.currentState.CallAnimationTrigger();
+    }
 
     // 人物翻转
     private void handleFild(float xVelocity)

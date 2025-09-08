@@ -17,8 +17,12 @@ public class Player_GroundeState : EntityState
         if (rb.velocity.y < 0 && player.groundDetected == false)
             StateMachine.ChangeState(player.fallState);
 
-        //ÓÐÌøÔ¾ÊäÈë£¬½øÈëÌøÔ¾×´Ì¬
+        //ÌøÔ¾ÊäÈë£¬½øÈëÌøÔ¾×´Ì¬
         if (input.Player.Jump.WasPressedThisFrame())
             StateMachine.ChangeState(player.jumpState);
+
+        //¹¥»÷ÊäÈë£¬½øÈë¹¥»÷×´Ì¬
+        if (input.Player.BasicAttack.WasReleasedThisFrame())
+            StateMachine.ChangeState(player.basicAttackState);
     }
 }

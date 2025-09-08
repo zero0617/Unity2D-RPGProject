@@ -20,7 +20,9 @@ public abstract class EntityState
 
     protected PlayerInputSet input;
 
-    protected float stateTimer;
+    protected float stateTimer; //定时器
+
+    protected bool triggerCalled;   //触发调用
 
 
     // 定义类的构造函数，它接受一个 StateMachine 类型的参数 stateMachine。
@@ -42,6 +44,7 @@ public abstract class EntityState
     public virtual void Enter()
     {
         anim.SetBool(animaBoolName, true);
+        triggerCalled = false;
     }
 
     // 更新
@@ -76,5 +79,10 @@ public abstract class EntityState
 
 
         return true;
+    }
+
+    public void CallAnimationTrigger()
+    {
+        triggerCalled = true;
     }
 }
