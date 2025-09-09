@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public Vector2[] attackVelocity;  //攻击向量
     public float attackVelocityDuration = .1f;  //攻击前冲持续时间
     public float comboResetTime = 1;    //攻击间隔时间（如果超过这个时间没有继续攻击，连招计数就会重置）
+    private Coroutine queuedArrackCo;
 
 
     //移动细节
@@ -118,6 +119,27 @@ public class Player : MonoBehaviour
     {
         HandleCollisionDetection();
         stateMachine.UpdataActionState();
+    }
+
+    //延迟进入攻击状态
+    public void EnterAttackStateWithDelay()
+    {
+        // 如果已有延迟攻击协程正在运行，则停止它
+        if (queuedArrackCo != null)
+            StopCoroutine(queuedArrackCo);
+
+        // 启动新的延迟攻击协程并保存引用
+        queuedArrackCo = StartCoroutine(EnterAttackStateWithDelayCo());
+    }
+
+    //实现延迟进入攻击状态的逻辑
+    private IEnumerator EnterAttackStateWithDelayCo()
+    {
+        // 等待直到当前帧结束
+        yield return new WaitForEndOfFrame();
+
+        // 切换到基本攻击状态
+        stateMachine.ChangeState(basicAttackState);
     }
 
     //修改人物线速度
