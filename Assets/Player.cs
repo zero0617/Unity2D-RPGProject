@@ -21,11 +21,15 @@ public class Player : MonoBehaviour
     public Player_DashState dashState { get; private set; }
     public Player_BasicAttackState basicAttackState { get; private set; }
 
+
+    //攻击细节
     [Header("Attack details")]
-    public Vector2 attackVelocity;
-    public float attackVelocityDuration = .1f;
+    public Vector2[] attackVelocity;  //攻击向量
+    public float attackVelocityDuration = .1f;  //攻击前冲持续时间
+    public float comboResetTime = 1;    //攻击间隔时间（如果超过这个时间没有继续攻击，连招计数就会重置）
 
 
+    //移动细节
     [Header("Movement details")]
     public float moveSpeed; //移动速度
     public bool facingRight = true; //是否朝右
@@ -44,6 +48,8 @@ public class Player : MonoBehaviour
     public float dashDuration = .25f; //冲刺持续时间
     public float dashSpeed = 20; //冲刺速度
 
+
+    //碰撞细节
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance; //到地面的距离
     [SerializeField] private float wallCheckDistance;   //到墙壁距离

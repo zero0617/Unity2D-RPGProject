@@ -289,8 +289,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  attackVelocity: {x: 3, y: 1.5}
+  attackVelocity:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 2.5}
+  - {x: 2.75, y: 1.75}
   attackVelocityDuration: 0.1
+  comboResetTime: 1
   moveSpeed: 8
   facingRight: 1
   jumpForce: 15
