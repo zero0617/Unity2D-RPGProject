@@ -21,7 +21,7 @@ public class Player_JumpState : Player_AiredState
         base.Update();
 
         //如果人物y轴速度小于0，则进入下落状态
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && StateMachine.currentState != player.jumpAttackState)
             StateMachine.ChangeState(player.fallState);
     }
 }

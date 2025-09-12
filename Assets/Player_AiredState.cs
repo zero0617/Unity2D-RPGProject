@@ -15,5 +15,9 @@ public class Player_AiredState : EntityState
         //允许人物空中水平控制
         if (player.moveInput.x != 0)
             player.SetVelocity(player.moveInput.x * (player.moveSpeed * player.inAirMoveMultipLier), rb.velocity.y);
+
+
+        if (input.Player.BasicAttack.WasPressedThisFrame())
+            StateMachine.ChangeState(player.jumpAttackState);
     }
 }

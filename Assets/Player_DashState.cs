@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Player_DashState : EntityState
 {
+
+    private float originalGravityScale;
+    private int dashDir;
+
+
     public Player_DashState(Player player, StateMachine stateMachine, string animaBoolName) : base(player, stateMachine, animaBoolName)
     {
     }
 
-    private float originalGravityScale;
-
+    
     public override void Enter()
     {
         base.Enter();
 
         stateTimer = player.dashDuration;
-
+        dashDir = player.moveInput.x != 0 ? (int)player.moveInput.x : player.facingDir;
         originalGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
     }
@@ -24,7 +28,7 @@ public class Player_DashState : EntityState
     {
         base.Update();
         CancelDashIfNeeded();
-        player.SetVelocity(player.dashSpeed * player.facingDir, 0);
+        player.SetVelocity(player.dashSpeed * dashDir, 0);
 
         if (stateTimer < 0)
         {

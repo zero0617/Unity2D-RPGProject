@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public Player_WallJumpState wallJumpState { get; private set; }
     public Player_DashState dashState { get; private set; }
     public Player_BasicAttackState basicAttackState { get; private set; }
+    public Player_JumpAttackState jumpAttackState { get; private set; }
 
 
     //攻击细节
@@ -93,6 +94,9 @@ public class Player : MonoBehaviour
 
         //创建一个基础攻击状态对象
         basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
+
+        //创建一个跳跃攻击状态对象
+        jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
     }
 
     private void OnEnable()
