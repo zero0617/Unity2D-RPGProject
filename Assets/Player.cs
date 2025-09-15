@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     [Header("Movement details")]
     public float moveSpeed; //移动速度
     public bool facingRight = true; //是否朝右
-    public int facingDir { get; private set; } = 1; //水平射线方向（1 ：右）
+    public int facingDir { get; private set; } = 1; //水平射线方向（1：右  -1: 左）
     public float jumpForce = 5; //跳跃高度
     public Vector2 wallJumpForce; //滑墙时跳跃的方向
 
@@ -56,6 +56,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckDistance; //到地面的距离
     [SerializeField] private float wallCheckDistance;   //到墙壁距离
     [SerializeField] private LayerMask whatIsGround;    //是否有地面属性
+    [SerializeField] private Transform primaryWallCheck;    //上半墙壁检查
+    [SerializeField] private Transform secondaryWallCheck;    //下半墙壁检查
+
 
     public bool groundDetected { get; private set; } //是否在地面
     public bool wallDetected { get; private set; }  //是否为墙壁
@@ -179,14 +182,17 @@ public class Player : MonoBehaviour
     public void HandleCollisionDetection()
     {
         groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance  ,whatIsGround);
-        wallDetected = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance * facingDir, whatIsGround);
+        wallDetected = Physics2D.Raycast(primaryWallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround)
+                    && Physics2D.Raycast(secondaryWallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
     }
 
     //人物射线
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(wallCheckDistance * facingDir, 0));
+        Gizmos.DrawLine(primaryWallCheck.position, primaryWallCheck.position + new Vector3(wallCheckDistance * facingDir, 0));
+        Gizmos.DrawLine(secondaryWallCheck.position, secondaryWallCheck.position + new Vector3(wallCheckDistance * facingDir, 0));
+
     }
 
 }

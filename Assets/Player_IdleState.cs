@@ -19,6 +19,10 @@ public class Player_IdleState : Player_GroundeState
     {
         base.Update();
 
+
+        if (player.moveInput.x == player.facingDir && player.wallDetected)
+            return;
+
         //如果有移动输入，进入移动状态
         if (player.moveInput.x != 0)
             StateMachine.ChangeState(player.moveState);

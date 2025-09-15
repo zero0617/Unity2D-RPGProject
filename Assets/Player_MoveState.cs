@@ -13,7 +13,9 @@ public class Player_MoveState : Player_GroundeState
     {
         base.Update();
 
-        if (player.moveInput.x == 0)
+        
+
+        if (player.moveInput.x == 0 || player.wallDetected)
             StateMachine.ChangeState(player.idleState);
 
         //人物转向
