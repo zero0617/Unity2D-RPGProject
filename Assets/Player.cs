@@ -174,6 +174,7 @@ public class Player : MonoBehaviour
     public void Fild()
     {
         transform.Rotate(0, 180, 0);
+        Debug.Log('11');
         facingRight = !facingRight;
         facingDir = facingDir * -1;
     }
