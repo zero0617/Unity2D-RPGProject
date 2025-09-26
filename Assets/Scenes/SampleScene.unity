@@ -4071,9 +4071,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundLayers:
   - background: {fileID: 750537118}
-    parallaxMultiplier: 0.9
+    parallaxMultiplier: 1
+    imageWidthOffset: 10
   - background: {fileID: 1657665771}
     parallaxMultiplier: 0.7
+    imageWidthOffset: 10
 --- !u!1 &1551189860
 GameObject:
   m_ObjectHideFlags: 0
