@@ -20,7 +20,7 @@ public class ParallaxBcakground : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         
         float currentCameraPositionX = mainCamera.transform.position.x; //初始化每帧当前相机x位置   

@@ -11,7 +11,7 @@ public class Player_WallJumpState : EntityState
     public override void Enter()
     {
         base.Enter();
-        player.wallJumpForce = new Vector2(6, 12);
+        //player.wallJumpForce = new Vector2(6, 12);
 
         player.SetVelocity(player.wallJumpForce.x * -player.facingDir, player.wallJumpForce.y);
     }
