@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_WallSlideState : EntityState
+public class Player_WallSlideState : PlayerState
 {
     public Player_WallSlideState(Player player, StateMachine stateMachine, string animaBoolName) : base(player, stateMachine, animaBoolName)
     {
@@ -20,9 +20,11 @@ public class Player_WallSlideState : EntityState
         //人物滑墙触底，转向进入空闲状态
         if (player.groundDetected)
         {
-            player.Fild();
-
             StateMachine.ChangeState(player.idleState);
+
+            if(player.facingDir != player.moveInput.x)
+                player.Fild();
+
         }
 
         //滑墙时有跳跃输入，进入滑墙跳跃状态

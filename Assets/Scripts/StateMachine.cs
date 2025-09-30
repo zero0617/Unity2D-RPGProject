@@ -7,11 +7,11 @@ using UnityEngine;
 public class StateMachine
 {
     //定义EntityState类型的变量，外部可读（get），但只能在内部修改（private set）
-    public EntityState currentState { get; private set; }
+    public EntiryState currentState { get; private set; }
 
 
     //初始化状态
-    public void Initialize(EntityState startState)
+    public void Initialize(EntiryState startState)
     {
         //设置当前状态为起始状态
         currentState = startState;
@@ -22,7 +22,7 @@ public class StateMachine
 
 
     //修改状态
-    public void ChangeState(EntityState newState)
+    public void ChangeState(EntiryState newState)
     {
         //退出当前状态
         currentState.Exit();

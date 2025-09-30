@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_BasicAttackState : EntityState
+public class Player_BasicAttackState : PlayerState
 {
     private float attackVelocityTimer;  //攻击计时器
     private float lastTimeAttacked; //最后攻击时间

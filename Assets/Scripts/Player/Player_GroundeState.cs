@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_GroundeState : EntityState
+public class Player_GroundeState : PlayerState
 {
     public Player_GroundeState(Player player, StateMachine stateMachine, string animaBoolName) : base(player, stateMachine, animaBoolName)
     {

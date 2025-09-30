@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_WallJumpState : EntityState
+public class Player_WallJumpState : PlayerState
 {
     public Player_WallJumpState(Player player, StateMachine stateMachine, string animaBoolName) : base(player, stateMachine, animaBoolName)
     {
